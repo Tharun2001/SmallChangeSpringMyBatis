@@ -13,14 +13,17 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.fidelity.user.IncomeCategory;
 import com.fidelity.user.Profile;
 import com.fidelity.user.User;
+import com.fidelity.user.UserPreferences;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration("classpath:beans.xml")
@@ -54,6 +57,18 @@ public class UserDaoImplTest {
 	void testSignUpNewUserWithExistingUsername() {
 		assertThrows(DuplicateKeyException.class, () -> {
 			int count = dao.signupUser(new Profile("Elend", "Venture", LocalDate.now(), "Aryan", "elend", "elend@smallchange.com", "+91-1234567890", 5));
+	    });
+	}
+	
+	@Test
+	void testSettingUserPreferences() {
+		dao.setUserPreferences(new UserPreferences("Aryan", "Trading", 3, IncomeCategory.MIDDLE, 7));
+	}
+	
+	@Test
+	void testSettingUserPreferencesForInvalidUser() {
+		assertThrows(DataIntegrityViolationException.class, () -> {
+			dao.setUserPreferences(new UserPreferences("a", "Trading", 3, IncomeCategory.MIDDLE, 7));
 	    });
 	}
 	

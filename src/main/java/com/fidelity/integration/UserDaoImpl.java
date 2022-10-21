@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.fidelity.user.Profile;
 import com.fidelity.user.User;
+import com.fidelity.user.UserPreferences;
 
 @Repository("usersDao")
 public class UserDaoImpl implements UserDao {
@@ -40,5 +41,11 @@ public class UserDaoImpl implements UserDao {
 		//logger.debug("enter loginUser");
 		return userMapper.loginUser(user);
 	}
+
+	@Override
+	public int setUserPreferences(UserPreferences up) {
+		return userMapper.setUserPreferences(up);
+	}
+
 
 }

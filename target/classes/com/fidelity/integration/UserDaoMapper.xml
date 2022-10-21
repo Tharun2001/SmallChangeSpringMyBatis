@@ -29,4 +29,9 @@
 		VALUES (#{firstName}, #{lastName}, #{dob}, #{email}, #{phone}, #{username}, #{password})
 	</insert>
 	
+	<insert id="setUserPreferences" parameterType="UserPreferences">
+		INSERT INTO sc_preferences (username, purpose, risk_tolerance, income_category, length_of_investment)
+		VALUES (#{username}, #{purpose}, #{risk}, #{incomeCategory}, #{lengthOfInvestment})
+	</insert>
+	
 </mapper>
