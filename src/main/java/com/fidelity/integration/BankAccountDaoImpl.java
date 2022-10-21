@@ -20,4 +20,21 @@ public class BankAccountDaoImpl implements BankAccountDao {
 		// TODO Auto-generated method stub
 		return mapper.getBankAccounts(acctnum);
 	}
+
+	@Override
+	public void insertBankAccount(BankAccount acct) {
+		mapper.insertBankAccount(acct);	
+	}
+
+	@Override
+	public void updateBankAccount(BankAccount acct) {
+		mapper.updateBankAccount(acct);
+		
+	}
+
+	@Override
+	public void deleteBankAccount(String acctnum) {
+		mapper.deleteBankAccount(acctnum);
+		
+	}
 }

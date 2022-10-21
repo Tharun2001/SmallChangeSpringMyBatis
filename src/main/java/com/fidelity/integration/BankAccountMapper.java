@@ -6,4 +6,7 @@ import com.fidelity.business.BankAccount;
 
 public interface BankAccountMapper {
 	List<BankAccount> getBankAccounts(String acctnum);
+	void insertBankAccount(BankAccount acct);
+	void updateBankAccount(BankAccount acct);
+	void deleteBankAccount(String acctnum);
 }
