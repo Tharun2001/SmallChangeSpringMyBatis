@@ -1,16 +1,12 @@
 package com.fidelity.business;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.Set;
 
 public class Account {
 	private String acct_num;
 	private String type;
 	private List<BankAccount> bankAccounts;
-	private List<Holding> portfolio;
-	private List<Trade> trades;
 	
 	public Account() {
 		super();
@@ -18,8 +14,34 @@ public class Account {
 	
 	public Account(String acct_num, String type) {
 		super();
+		this.bankAccounts = new ArrayList<>();
 		this.acct_num = acct_num;
 		this.type = type;
+	}
+	
+	public void addAccount(BankAccount account) {
+		bankAccounts.add(account);
+	}
+	
+	public void removeAccount(BankAccount account) {
+		if(bankAccounts.contains(account)) {
+			bankAccounts.remove(account);
+		}
+		else {
+			throw new IllegalArgumentException("Provided account is not present.");
+		}
+	}
+	public BankAccount getBankAccount(BankAccount account) {
+		for (BankAccount ele : bankAccounts) {
+		    if (ele.equals(account)) {
+		      return account;
+		    }
+		}
+		throw new IllegalArgumentException("Provided account is not present.");
+	}
+	
+	public int getNoOfBankAccounts() {
+		return bankAccounts.size();
 	}
 	
 	public String getAcct_num() {
@@ -41,19 +63,5 @@ public class Account {
 		this.bankAccounts = bankAccounts;
 	}
 	
-	public List<Holding> getPortfolio() {
-		return portfolio;
-	}
-	public void setPortfolio(List<Holding> portfolio) {
-		this.portfolio = portfolio;
-	}
-	
-	public List<Trade> getTrades() {
-		return trades;
-	}
-	
-	public void setTrades(List<Trade> trades) {
-		this.trades = trades;
-	}
 	
 }

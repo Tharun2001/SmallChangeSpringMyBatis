@@ -11,10 +11,37 @@ public class BankAccount {
 	
 	public BankAccount(String acctNum, String bankAccNumber, String bankName, BigDecimal balance) {
 		super();
+		if(bankAccNumber == null || bankAccNumber.equals("")) {
+			throw new IllegalArgumentException("Account number should not be null or empty.");
+		}
+		
+		if(bankName == null || bankName.equals("")) {
+			throw new IllegalArgumentException("Account number should not be null or empty.");
+		}
+		
+		if(balance == null || bankName.equals("")) {
+			throw new IllegalArgumentException("Account number should not be null or empty.");
+		}
+		
+		if(balance.compareTo(BigDecimal.ZERO) < 0) {
+			throw new IllegalArgumentException("Balance cannot be negative.");
+		}
+		this.balance = balance;
 		this.acctNum = acctNum;
 		this.bankAccNumber = bankAccNumber;
 		this.bankName = bankName;
 		this.balance = balance;
+	}
+	
+	public void creditAmt(BigDecimal amt) {
+		balance = balance.add(amt);
+	}
+	
+	public void debitAmt(BigDecimal amt) {
+		if(balance.compareTo(amt) < 0) {
+			throw new IllegalArgumentException("Insufficient balance.");
+		}
+		balance = balance.subtract(amt);
 	}
 	
 	public String getAcctNum() {
