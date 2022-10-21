@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.fidelity.business.Security;
 
-@Repository("securityDao")
+@Repository("securitiesDao")
 @Primary
 public class SecurityDaoImpl implements SecurityDao{
 	

@@ -14,15 +14,5 @@
 	<select id="getSecurities" resultMap="SecurityMap">
 		SELECT * from scott.SC_STOCK_SECURITIES
 	</select>
-		 
-	<select id="insertSecurity" resultMap="SecurityMap" >
-		INSERT INTO scott.sc_stock_securities (s_id, s_name, s_code, s_ltp, s_asset_class) 
-	   VALUES (#{value}, #{value}, #{value},#{value},#{value})
-	</select>
-	
-	<select id="insertSecurity" resultMap="SecurityMap" >
-		INSERT INTO scott.sc_stock_securities (s_id, s_name, s_code, s_ltp, s_asset_class) 
-	   VALUES (#{value}, #{value}, #{value},#{value},#{value})
-	</select>
 
 </mapper>
