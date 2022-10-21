@@ -3,6 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.fidelity.integration.SecurityMapper">
+
 	 <resultMap type="Security" id="SecurityMap">
 		<id property="stockId" column="S_ID"/>
 		<result property="stockName" column="S_NAME"/>
@@ -14,5 +15,25 @@
 	<select id="getSecurities" resultMap="SecurityMap">
 		SELECT * from scott.SC_STOCK_SECURITIES
 	</select>
-
+		
+	<insert id="insertSecurity" parameterType = "Security">
+	INSERT INTO scott.sc_stock_securities (s_id, s_name, s_code, s_ltp, s_asset_class) 
+	VALUES (#{stockId}, #{stockName}, #{stockCode},#{stockLtp},#{stockAssetClass})	</insert>
+	
+	<delete id="deleteSecurity" parameterType="Integer">
+		   DELETE FROM sc_stock_securities
+           WHERE s_id = #{value}
+	</delete>
+	
+	<update id="updateSecurity" parameterType="Security">
+		UPDATE scott.sc_stock_securities
+			SET
+			    s_name = stockName,
+			    s_ltp = stockLtp,
+			    s_asset_class = stockAssetClass,
+			    s_code = stockCode
+			WHERE
+			    s_id = stockId
+	</update>
+	
 </mapper>
