@@ -16,6 +16,7 @@ public class BankAccount {
 		this.bankName = bankName;
 		this.balance = balance;
 	}
+	
 	public String getAcctNum() {
 		return acctNum;
 	}
@@ -56,6 +57,7 @@ public class BankAccount {
 		return Objects.equals(acctNum, other.acctNum) && Objects.equals(balance, other.balance)
 				&& Objects.equals(bankAccNumber, other.bankAccNumber) && Objects.equals(bankName, other.bankName);
 	}
+	
 	@Override
 	public String toString() {
 		return "BankAccount [acctNum=" + acctNum + ", bankAccNumber=" + bankAccNumber + ", bankName=" + bankName
