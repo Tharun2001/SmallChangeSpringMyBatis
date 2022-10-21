@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fidelity.integration.BankAccountMapper">
+	 <resultMap type="BankAccount" id="BankAccountMap">
+		<id property="bankAccNumber" column="BANK_ACCTNUM"/>
+		<result property="bankName" column="BANK_NAME"/>
+		<result property="balance" column="BALANCE"/>
+	</resultMap>
+ 
+	<select id="getBankAccounts" resultMap="BankAccountMap">
+		SELECT BANK_ACCTNUM, BANK_NAME, BALANCE
+		FROM SC_BANKACCOUNT
+		WHERE ACCTNUM = #{value}
+	</select>
+
+</mapper>
