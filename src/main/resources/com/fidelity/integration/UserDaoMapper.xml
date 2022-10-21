@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fidelity.integration.UserDaoMapper">
+	 
+	<select id="getAllUsers" resultType="Profile">
+		select scu.first_name, scu.last_name, scu.date_of_birth, scu.email, scu.phone_number, scu.username, scu.user_password, scp.risk_tolerance from sc_users scu
+		left join sc_preferences scp
+		on scp.username = scu.username
+	</select>
+
+</mapper>
