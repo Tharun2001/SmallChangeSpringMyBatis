@@ -37,7 +37,7 @@
 
 	<!-- Enable component scanning and autowire for the integration and configuration packages
 		 (beware that this does not enable mapper scanning!) -->
-	<context:component-scan base-package="com.fidelity.integration,com.fidelity.configuration" />
+	<context:component-scan base-package="com.fidelity.integration,com.fidelity.user" />
 
 	<!-- Enable transaction demarcation with annotations -->
 	<tx:annotation-driven />
@@ -47,7 +47,7 @@
 		<property name="dataSource" ref="datasource" />
 		
 		<!-- Define the aliases package to be the business package -->
-		<property name="typeAliasesPackage" value="com.fidelity.business" />
+		<property name="typeAliasesPackage" value="com.fidelity.business, com.fidelity.user" />
 		
 		<!-- Define the mapperLocations to be the xml files in the integration package -->
 		<property name="mapperLocations" value="classpath:com/fidelity/**/*.xml" />

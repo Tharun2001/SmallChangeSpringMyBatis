@@ -12,7 +12,6 @@ import com.fidelity.user.User;
 @Repository("usersDao")
 public class UserDaoImpl implements UserDao {
 	
-	@Autowired
 	private Logger logger;
 
 	@Autowired
@@ -20,26 +19,26 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public List<Profile> getAllUsers() {
-		logger.debug("enter getAllUsers");
+		//logger.debug("enter getAllUsers");
 		return userMapper.getAllUsers();
 	}
 
 	@Override
-	public void signupUser(Profile p) {
-		// TODO Auto-generated method stub
-		
+	public int signupUser(Profile p) {
+		//logger.debug("enter signupUser");
+		return userMapper.signUpUser(p);
 	}
 
 	@Override
-	public void deleteUser(String username) {
-		// TODO Auto-generated method stub
-		
+	public int deleteUser(String username) {
+		//logger.debug("enter deleteUser");
+		return userMapper.deleteUser(username);
 	}
 
 	@Override
-	public boolean loginUser(User user) {
-		// TODO Auto-generated method stub
-		return false;
+	public int loginUser(User user) {
+		//logger.debug("enter loginUser");
+		return userMapper.loginUser(user);
 	}
 
 }

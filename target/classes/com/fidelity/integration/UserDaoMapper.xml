@@ -5,9 +5,28 @@
 <mapper namespace="com.fidelity.integration.UserDaoMapper">
 	 
 	<select id="getAllUsers" resultType="Profile">
-		select scu.first_name, scu.last_name, scu.date_of_birth, scu.email, scu.phone_number, scu.username, scu.user_password, scp.risk_tolerance from sc_users scu
+		select scu.first_name, scu.last_name, scu.date_of_birth, scu.username, 
+		scu.user_password, scu.email, scu.phone_number, scp.risk_tolerance from sc_users scu
 		left join sc_preferences scp
 		on scp.username = scu.username
 	</select>
-
+	
+	<delete id="deleteUser" parameterType="String">
+		DELETE FROM sc_users 
+		WHERE username = #{username}
+	</delete>
+	
+	<select id="loginUser" resultType="int" parameterType="User">
+		select COUNT(username) from sc_users 
+		WHERE 
+		username = #{username} 
+		AND 
+		user_password = #{password}
+	</select>
+	
+	<insert id="signUpUser" parameterType="Profile">
+		INSERT INTO sc_users (first_name, last_name, date_of_birth, email, phone_number, username, user_password)
+		VALUES (#{firstName}, #{lastName}, #{dob}, #{email}, #{phone}, #{username}, #{password})
+	</insert>
+	
 </mapper>
